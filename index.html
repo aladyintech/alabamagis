@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GIS App</title>
+    <title>Alabama GIS Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <style>
         #map {
@@ -15,8 +15,8 @@
     <div id="map"></div>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
-        // Initialize the map
-        var map = L.map('map').setView([51.505, -0.09], 13);
+        // Initialize the map and set view to Alabama
+        var map = L.map('map').setView([32.806671, -86.791130], 7); // Center on Alabama
 
         // Add a tile layer to the map (OpenStreetMap)
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -24,11 +24,11 @@
             attribution: '© OpenStreetMap'
         }).addTo(map);
 
-        // Add a marker
-        var marker = L.marker([51.5, -0.09]).addTo(map);
+        // Add a marker at Montgomery, Alabama
+        var marker = L.marker([32.379223, -86.307737]).addTo(map);
 
-        // Add a popup
-        marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+        // Add a popup to the marker
+        marker.bindPopup("<b>Montgomery, AL</b><br>Capital of Alabama.").openPopup();
     </script>
 </body>
 </html>
