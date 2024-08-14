@@ -1,0 +1,24 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME": "Jefferson"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-86.9166, 33.5207],
+            [-86.8753, 33.5207],
+            [-86.8753, 33.5631],
+            [-86.9166, 33.5631],
+            [-86.9166, 33.5207]
+          ]
+        ]
+      }
+    },
+    // Add other counties...
+  ]
+}
