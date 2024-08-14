@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alabama GIS App</title>
+    <title>Alabama Highways Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
         #map {
@@ -21,9 +21,10 @@
 <body>
 
 <div id="menu">
-    <label for="countySelect">Select a County: </label>
-    <select id="countySelect">
-        <!-- Dropdown options will be populated by JavaScript -->
+    <label for="layerSelect">Select a Layer: </label>
+    <select id="layerSelect">
+        <option value="highways">Highways</option>
+        <!-- Add more layers here in the future -->
     </select>
 </div>
 
