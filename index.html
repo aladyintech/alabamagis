@@ -1,52 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alabama GIS Map with Highways</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <style>
-        #map {
-            height: 100vh;
-        }
-    </style>
-</head>
-<body>
-    <div id="map"></div>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-        // Initialize the map and set view to Alabama
-        var map = L.map('map').setView([32.806671, -86.791130], 7); // Center on Alabama
+import streamlit as st
+import geopandas as gpd
+import folium
+from streamlit_folium import st_folium
 
-        // Add a tile layer to the map (OpenStreetMap)
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© OpenStreetMap'
-        }).addTo(map);
+# Load GeoJSON data of Alabama
+gdf = gpd.read_file('alabama_counties.geojson')
 
-        // Add a marker at Montgomery, Alabama
-        var marker = L.marker([32.379223, -86.307737]).addTo(map);
-        marker.bindPopup("<b>Montgomery, AL</b><br>Capital of Alabama.").openPopup();
+# Streamlit app layout
+st.title("Alabama GIS App")
 
-        // Load and display GeoJSON data for highways
-        axios.get('alabama_highways.geojson').then(function(response) {
-            var highways = response.data;
+# Dropdown menu to select a county
+selected_county = st.selectbox("Select a County", gdf['NAME'].unique())
 
-            // Add GeoJSON layer to the map
-            L.geoJSON(highways, {
-                style: function(feature) {
-                    return { color: 'blue', weight: 2 };
-                },
-                onEachFeature: function(feature, layer) {
-                    layer.on('click', function(e) {
-                        layer.bindPopup("Highway: " + feature.properties.name).openPopup();
-                    });
-                }
-            }).addTo(map);
-        }).catch(function(error) {
-            console.log('Error loading GeoJSON data:', error);
-        });
-    </script>
-</body>
-</html>
+# Filter the GeoDataFrame for the selected county
+selected_gdf = gdf[gdf['NAME'] == selected_county]
+
+# Create a Folium map centered around Alabama
+m = folium.Map(location=[32.806671, -86.791130], zoom_start=7)
+
+# Add selected county to the map
+folium.GeoJson(selected_gdf).add_to(m)
+
+# Display the map in Streamlit
+st_folium(m, width=700, height=500)
