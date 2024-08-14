@@ -1,25 +1,35 @@
-import streamlit as st
-import geopandas as gpd
-import folium
-from streamlit_folium import st_folium
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alabama GIS App</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #menu {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
 
-# Load GeoJSON data of Alabama
-gdf = gpd.read_file('alabama_counties.geojson')
+<div id="menu">
+    <label for="countySelect">Select a County: </label>
+    <select id="countySelect">
+        <!-- Dropdown options will be populated by JavaScript -->
+    </select>
+</div>
 
-# Streamlit app layout
-st.title("Alabama GIS App")
+<div id="map"></div>
 
-# Dropdown menu to select a county
-selected_county = st.selectbox("Select a County", gdf['NAME'].unique())
-
-# Filter the GeoDataFrame for the selected county
-selected_gdf = gdf[gdf['NAME'] == selected_county]
-
-# Create a Folium map centered around Alabama
-m = folium.Map(location=[32.806671, -86.791130], zoom_start=7)
-
-# Add selected county to the map
-folium.GeoJson(selected_gdf).add_to(m)
-
-# Display the map in Streamlit
-st_folium(m, width=700, height=500)
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
