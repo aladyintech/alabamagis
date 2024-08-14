@@ -4,21 +4,31 @@
     {
       "type": "Feature",
       "properties": {
-        "NAME": "Jefferson"
+        "name": "I-65"
       },
       "geometry": {
-        "type": "Polygon",
+        "type": "LineString",
         "coordinates": [
-          [
-            [-86.9166, 33.5207],
-            [-86.8753, 33.5207],
-            [-86.8753, 33.5631],
-            [-86.9166, 33.5631],
-            [-86.9166, 33.5207]
-          ]
+          [-87.62788, 32.806671],
+          [-86.79113, 32.806671],
+          // More coordinates...
         ]
       }
     },
-    // Add other counties...
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "I-20"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-88.01027, 33.514045],
+          [-85.96814, 33.514045],
+          // More coordinates...
+        ]
+      }
+    }
+    // Add more highways...
   ]
 }
