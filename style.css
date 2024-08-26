@@ -1,0 +1,42 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+#app {
+    display: flex;
+    height: 100%;
+}
+
+#map {
+    width: 50%;
+    height: 100vh;
+}
+
+#control-panel {
+    width: 50%;
+    padding: 20px;
+    background-color: #f7f7f7;
+}
+
+h4 {
+    margin-top: 0;
+}
+
+#location-dropdown {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#location-info {
+    padding: 20px;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+}
