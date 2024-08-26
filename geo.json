@@ -1,34 +1,45 @@
-{
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "I-65"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [-87.62788, 32.806671],
-          [-86.79113, 32.806671],
-          // More coordinates...
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "I-20"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [-88.01027, 33.514045],
-          [-85.96814, 33.514045],
-          // More coordinates...
-        ]
-      }
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize the map
+    const map = L.map('map').setView([32.5, -86.5], 7);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19
+    }).addTo(map);
+
+    // Fetch data from the JSON file
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+            populateDropdown(data);
+            addMarkersToMap(data);
+        });
+
+    function populateDropdown(data) {
+        const dropdown = document.getElementById('location-dropdown');
+        data.forEach((item, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = item.location;
+            dropdown.appendChild(option);
+        });
+
+        dropdown.addEventListener('change', function() {
+            updateLocationInfo(data[this.value]);
+        });
+
+        updateLocationInfo(data[0]);
     }
-    // Add more highways...
-  ]
-}
+
+    function addMarkersToMap(data) {
+        data.forEach(item => {
+            L.marker([item.latitude, item.longitude]).addTo(map)
+                .bindPopup(`<b>${item.location}</b><br>Speed: ${item.speed} mph`);
+        });
+    }
+
+    function updateLocationInfo(locationData) {
+        const infoDiv = document.getElementById('location-info');
+        infoDiv.innerHTML = `<p>Location: ${locationData.location}</p>
+                             <p>Speed: ${locationData.speed} mph</p>`;
+    }
+});
