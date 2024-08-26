@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
         maxZoom: 19
     }).addTo(map);
 
-    // Fetch data from the server
-    fetch('data.php')
+    // Fetch data from the JSON file
+    fetch('data.json')
         .then(response => response.json())
         .then(data => {
             populateDropdown(data);
