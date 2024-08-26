@@ -3,34 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alabama Highways Map</title>
+    <title>Alabama GIS Traffic Map</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <style>
-        #map {
-            height: 600px;
-            width: 100%;
-        }
-        body {
-            font-family: Arial, sans-serif;
-        }
-        #menu {
-            margin: 20px;
-        }
-    </style>
 </head>
 <body>
+    <div id="app">
+        <div id="map"></div>
+        <div id="control-panel">
+            <h4>Traffic & Speed Information</h4>
+            <select id="location-dropdown"></select>
+            <div id="location-info"></div>
+            <button id="update-button">Update Map</button>
+        </div>
+    </div>
 
-<div id="menu">
-    <label for="layerSelect">Select a Layer: </label>
-    <select id="layerSelect">
-        <option value="highways">Highways</option>
-        <!-- Add more layers here in the future -->
-    </select>
-</div>
-
-<div id="map"></div>
-
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="app.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
