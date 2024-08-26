@@ -11,9 +11,10 @@ body, html {
 }
 
 #map {
-    width: 50%;
-    height: 100vh;
+    width: 50%; /* This will take 50% of the page width */
+    height: 100vh; /* This will take the full viewport height */
 }
+
 
 #control-panel {
     width: 50%;
