@@ -1,12 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize the map
-    const map = L.map('map').setView([32.5, -86.5], 7);
+    // Initialize the map centered on Alabama
+    const map = L.map('map').setView([32.806671, -86.791130], 7); // Coordinates for Alabama
 
+    // Add a Tile Layer (the base map)
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Fetch data from the JSON file
+    // Example: Add markers to the map using your data
     fetch('data.json')
         .then(response => response.json())
         .then(data => {
